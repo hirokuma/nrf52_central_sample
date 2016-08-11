@@ -373,47 +373,47 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
             }
 
             // Verify if short or complete name matches target.
-//            if (err_code == NRF_SUCCESS)
-//            {
-//                uint16_t extracted_uuid;
-//
-//                // UUIDs found, look for matching UUID
-//                for (uint32_t u_index = 0; u_index < (type_data.data_len/UUID16_SIZE); u_index++)
-//                {
-//                    UUID16_EXTRACT(&extracted_uuid,&type_data.p_data[u_index * UUID16_SIZE]);
-//
-//                    APPL_LOG_DEBUG("\t[APPL]: %x\r\n",extracted_uuid);
-//
-//                    if(extracted_uuid == TARGET_UUID)
-//                    {
-//                        // Stop scanning.
-//                        err_code = sd_ble_gap_scan_stop();
-//
-//                        if (err_code != NRF_SUCCESS)
-//                        {
-//                            APPL_LOG_DEBUG("[APPL]: Scan stop failed, reason %d\r\n", err_code);
-//                        }
-//                        err_code = bsp_indication_set(BSP_INDICATE_IDLE);
-//                        APP_ERROR_CHECK(err_code);
-//
-//                        m_scan_param.selective = 0; 
-//                        m_scan_param.p_whitelist = NULL;
-//
-//                        // Initiate connection.
-//                        err_code = sd_ble_gap_connect(&p_gap_evt->params.adv_report.peer_addr,
-//                                                      &m_scan_param,
-//                                                      &m_connection_param);
-//
-//                        m_whitelist_temporarily_disabled = false;
-//
-//                        if (err_code != NRF_SUCCESS)
-//                        {
-//                            APPL_LOG_DEBUG("[APPL]: Connection Request Failed, reason %d\r\n", err_code);
-//                        }
-//                        break;
-//                    }
-//                }
-//            }
+            if (err_code == NRF_SUCCESS)
+            {
+                uint16_t extracted_uuid;
+
+                // UUIDs found, look for matching UUID
+                for (uint32_t u_index = 0; u_index < (type_data.data_len/UUID16_SIZE); u_index++)
+                {
+                    UUID16_EXTRACT(&extracted_uuid,&type_data.p_data[u_index * UUID16_SIZE]);
+
+                    APPL_LOG_DEBUG("\t[APPL]: %x\r\n",extracted_uuid);
+
+                    if(extracted_uuid == TARGET_UUID)
+                    {
+                        // Stop scanning.
+                        err_code = sd_ble_gap_scan_stop();
+
+                        if (err_code != NRF_SUCCESS)
+                        {
+                            APPL_LOG_DEBUG("[APPL]: Scan stop failed, reason %d\r\n", err_code);
+                        }
+                        err_code = bsp_indication_set(BSP_INDICATE_IDLE);
+                        APP_ERROR_CHECK(err_code);
+
+                        m_scan_param.selective = 0; 
+                        m_scan_param.p_whitelist = NULL;
+
+                        // Initiate connection.
+                        err_code = sd_ble_gap_connect(&p_gap_evt->params.adv_report.peer_addr,
+                                                      &m_scan_param,
+                                                      &m_connection_param);
+
+                        m_whitelist_temporarily_disabled = false;
+
+                        if (err_code != NRF_SUCCESS)
+                        {
+                            APPL_LOG_DEBUG("[APPL]: Connection Request Failed, reason %d\r\n", err_code);
+                        }
+                        break;
+                    }
+                }
+            }
             break;
         }
 
