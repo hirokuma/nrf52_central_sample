@@ -487,8 +487,8 @@ static void ble_evt_dispatch(ble_evt_t * p_ble_evt)
 {
     dm_ble_evt_handler(p_ble_evt);
     ble_db_discovery_on_ble_evt(&m_ble_db_discovery, p_ble_evt);
-//    ble_hrs_c_on_ble_evt(&m_ble_hrs_c, p_ble_evt);
-//    ble_bas_c_on_ble_evt(&m_ble_bas_c, p_ble_evt);
+    ble_hrs_c_on_ble_evt(&m_ble_hrs_c, p_ble_evt);
+    ble_bas_c_on_ble_evt(&m_ble_bas_c, p_ble_evt);
     bsp_btn_ble_on_ble_evt(p_ble_evt);
     on_ble_evt(p_ble_evt);
 }
